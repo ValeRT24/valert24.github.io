@@ -1570,12 +1570,7 @@
       const qrContainer = document.getElementById('qrcode');
       if(!qrContainer || typeof QRCode === 'undefined') return;
 
-      // IMPORTANTE: Reemplaza esta URL con la URL pública de tu CV
-      // Opciones:
-      // 1. GitHub Pages: https://valert24.github.io/cv/
-      // 2. Netlify/Vercel: https://tu-cv.netlify.app
-      // 3. Tu LinkedIn: https://www.linkedin.com/in/valeria-reyes-tapia
-      const cvURL = 'https://github.com/ValeRT24';
+      const cvURL = 'https://valert24.github.io/';
       
       new QRCode(qrContainer, {
         text: cvURL,
