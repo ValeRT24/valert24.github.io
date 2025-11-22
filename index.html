@@ -71,7 +71,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       box-shadow: 0 20px 60px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
       display:grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: minmax(300px, 360px) 1fr;
       gap:30px;
       padding:26px;
       position:relative;
@@ -122,7 +122,7 @@
       flex:0 0 86px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       border: 1px solid rgba(255,255,255,0.04);
     }
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+    .avatar img, .avatar svg{width:100%;height:100%;object-fit:cover;display:block;}
     .pmeta{line-height:1}
     .name{font-size:18px;font-weight:800;letter-spacing:-0.4px}
     .role{font-size:13px;color:var(--muted);margin-top:6px}
@@ -389,21 +389,182 @@
       font-size:13px;
     }
 
-    /* RESPONSIVE */
-    @media (max-width:1100px){ 
-      .projects{grid-template-columns:repeat(2,1fr)} 
-      .shell{grid-template-columns:1fr} 
-      .hero-left{max-width:100%}
-      .sidebar{position:relative;top:0;max-height:none}
-      .chart-container, .wordcloud-container{height:280px}
+    /* RESPONSIVE DESIGN */
+    /* Large tablets and small desktops (1024px - 1280px) */
+    @media (max-width:1280px){ 
+      .shell{
+        max-width:100%;
+        padding:20px;
+        gap:24px;
+      }
+      body{padding:20px}
     }
-    @media (max-width:720px){
+    
+    /* Tablets and medium screens (768px - 1024px) */
+    @media (max-width:1024px){ 
+      .shell{
+        grid-template-columns:1fr;
+        padding:18px;
+        gap:20px;
+      }
+      .sidebar{
+        position:relative;
+        top:0;
+        max-height:none;
+        overflow-y:visible;
+      }
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .hero-left{max-width:100%}
+      .chart-container, .wordcloud-container{height:280px}
+      .hero-actions{
+        flex-wrap:wrap;
+      }
+      /* Improve specialty grid */
+      div[style*="grid-template-columns:1fr 1fr"]{
+        grid-template-columns:1fr !important;
+      }
+    }
+    
+    /* Small tablets and large phones (480px - 768px) */
+    @media (max-width:768px){
       body{padding:16px}
+      .shell{
+        padding:16px;
+        gap:16px;
+        border-radius:16px;
+      }
       .projects{grid-template-columns:1fr}
-      .title{font-size:22px}
-      .project-card{height:auto;min-height:120px}
-      .terminal{height:72%}
-      .sidebar{position:relative;top:0;max-height:none}
+      .title{font-size:24px;letter-spacing:-0.4px}
+      .subtitle{font-size:13px}
+      .project-card{
+        height:auto;
+        min-height:140px;
+        padding:16px;
+      }
+      .hero{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:16px;
+      }
+      .hero-actions{
+        width:100%;
+        flex-direction:column;
+      }
+      .btn{
+        width:100%;
+        text-align:center;
+      }
+      .terminal{
+        height:70%;
+        width:96%;
+      }
+      .profile{
+        flex-direction:row;
+        gap:12px;
+      }
+      .avatar{
+        width:70px;
+        height:70px;
+        flex:0 0 70px;
+      }
+      .name{font-size:16px}
+      .role{font-size:12px}
+      .timeline-item::before{left:20px}
+      .chart-container, .wordcloud-container{
+        height:240px;
+        padding:16px;
+      }
+      /* Stack timeline items better on mobile */
+      .timeline-content{
+        padding:10px;
+      }
+      .timeline-year{font-size:13px}
+      .timeline-company{font-size:14px}
+    }
+    
+    /* Mobile phones (320px - 480px) */
+    @media (max-width:480px){
+      body{padding:12px}
+      .shell{
+        padding:12px;
+        gap:14px;
+        border-radius:12px;
+      }
+      .title{font-size:20px}
+      .subtitle{font-size:12px}
+      .hero{padding:14px}
+      .profile{
+        padding:12px;
+        gap:10px;
+      }
+      .avatar{
+        width:60px;
+        height:60px;
+        flex:0 0 60px;
+      }
+      .name{font-size:15px}
+      .role{font-size:11px}
+      .glass{padding:10px}
+      .skill-head{font-size:11px}
+      .skill-row{font-size:12px}
+      .project-card{
+        min-height:130px;
+        padding:14px;
+      }
+      .project-title{font-size:15px}
+      .project-desc{font-size:12px}
+      .terminal{
+        height:80%;
+        width:98%;
+        padding:12px;
+      }
+      .terminal pre{font-size:11px}
+      .terminal-btn{
+        width:48px;
+        height:48px;
+        font-size:20px;
+      }
+      .timeline-dot{
+        width:10px;
+        height:10px;
+      }
+      .timeline-item::before{
+        left:17px;
+      }
+      .chart-container, .wordcloud-container{
+        height:200px;
+        padding:12px;
+      }
+      .qr-container{padding:16px}
+      #qrcode{padding:12px}
+      /* Better text sizing for mobile */
+      h2, h3, .section-title{
+        font-size:16px !important;
+      }
+      ul li{
+        font-size:12px !important;
+      }
+    }
+    
+    /* Extra small devices (max 320px) */
+    @media (max-width:320px){
+      body{padding:8px}
+      .shell{
+        padding:10px;
+        gap:12px;
+      }
+      .title{font-size:18px}
+      .avatar{
+        width:50px;
+        height:50px;
+        flex:0 0 50px;
+      }
+      .name{font-size:14px}
+      .role{font-size:10px}
+      .btn{
+        padding:8px 12px;
+        font-size:12px;
+      }
     }
 
     /* ===========================
@@ -504,8 +665,12 @@
     <aside class="sidebar" aria-label="Información lateral">
       <div class="profile">
         <div class="avatar" id="avatar">
-          <!-- Placeholder image (replace with yours) -->
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&crop=faces" alt="Foto profesional">
+          <!-- Generic avatar SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="width:100%;height:100%">
+            <rect fill="#7bd7ff" width="100" height="100"/>
+            <circle fill="#0b0f19" cx="50" cy="35" r="18"/>
+            <path fill="#0b0f19" d="M25,85 Q25,60 50,60 Q75,60 75,85 Z"/>
+          </svg>
         </div>
         <div class="pmeta">
           <div class="name">Valeria Reyes Tapia</div>
